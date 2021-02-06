@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice API BoredAPI</title>
+</head>
+
+<body>
+    <h1 id="activity">Take a Class On</h1>
+    <p>To Do So, <a id="explore-link" href="#" >FOLLOW THIS LINK</a></p>
+
+    <script>
+        function doSomething() {
+            fetch('http://www.boredapi.com/api/activity/')
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data.link);
+                    document.getElementById('activity').innerHTML = data.activity;
+                    document.getElementById('explore-link')
+                    .href = data.link
+                });
+        }
+        //for immediate function call to get instant data
+        doSomething();
+        //after that 3 sec interval call to get data
+        setInterval(() => {
+            doSomething();
+        }, 4000);
+    </script>
+</body>
+
+</html>
